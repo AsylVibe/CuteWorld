@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kawaii — мягкие игрушки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink-bg:#FFF3F6;
+    --pink-mid:#FFD6E2;
+    --pink-deep:#FF9DBB;
+    --pink-ink:#E8608E;
+    --green-bg:#F1FAF2;
+    --green-mid:#CDEBD3;
+    --green-deep:#8FD6A3;
+    --green-ink:#3F9E63;
+    --yellow:#FFDD5A;
+    --yellow-deep:#F6C526;
+    --ink:#4B3A42;
+    --ink-soft:#8A7680;
+    --cream:#FFFDFB;
+    --radius-lg: 2.5rem;
+    --radius-md: 1.5rem;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Nunito', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    line-height:1.15;
+  }
+  a{text-decoration:none;color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 48px;
+  }
+  ::selection{background:var(--yellow); color:var(--ink);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--pink-ink);
+    outline-offset:3px;
+    border-radius:8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,243,246,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(75,58,66,0.06);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 48px;
+    max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:1.5rem;
+    color:var(--pink-ink);
+  }
+  .logo .dot{
+    width:12px;height:12px;border-radius:50%;
+    background:var(--yellow);
+    box-shadow:6px 2px 0 -2px var(--green-deep);
+  }
+  .nav-links{
+    display:flex; gap:36px;
+    font-weight:700;
+    font-size:0.98rem;
+  }
+  .nav-links a{
+    position:relative; padding:4px 0;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--pink-ink);}
+  .nav-links a::after{
+    content:"";
+    position:absolute; left:0; bottom:-2px;
+    width:0; height:3px; border-radius:3px;
+    background:var(--yellow-deep);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--pink-ink);
+    color:#fff;
+    padding:12px 26px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.95rem;
+    box-shadow:0 6px 16px rgba(232,96,142,0.35);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px); box-shadow:0 10px 20px rgba(232,96,142,0.4);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:var(--pink-bg);
+    padding:88px 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:40px;
+    align-items:center;
+    padding-bottom:60px;
+  }
+  .eyebrow-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    background:#fff;
+    border-radius:999px;
+    padding:8px 18px 8px 10px;
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--pink-ink);
+    box-shadow:0 4px 14px rgba(232,96,142,0.12);
+    margin-bottom:26px;
+  }
+  .eyebrow-tag span.icon{
+    width:22px;height:22px;border-radius:50%;
+    background:var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;
+  }
+  .hero h1{
+    font-size:3.4rem;
+    color:var(--ink);
+    max-width:560px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--pink-ink);
+    position:relative;
+    white-space:nowrap;
+  }
+  .hero p.lead{
+    margin-top:24px;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:460px;
+  }
+  .hero-actions{
+    margin-top:36px;
+    display:flex;
+    gap:16px;
+    align-items:center;
+  }
+  .btn-primary{
+    background:var(--pink-ink);
+    color:#fff;
+    padding:16px 32px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:1.02rem;
+    box-shadow:0 10px 24px rgba(232,96,142,0.35);
+    transition:transform .2s ease, box-shadow .2s ease;
+    border:none;
+    cursor:pointer;
+  }
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 14px 28px rgba(232,96,142,0.42);}
+  .btn-ghost{
+    display:flex; align-items:center; gap:10px;
+    font-weight:700;
+    color:var(--ink);
+    padding:16px 6px;
+  }
+  .btn-ghost .play{
+    width:44px;height:44px;border-radius:50%;
+    background:#fff;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 16px rgba(75,58,66,0.12);
+    transition:transform .2s ease;
+  }
+  .btn-ghost:hover .play{transform:scale(1.08);}
+
+  .hero-stats{
+    display:flex;
+    gap:34px;
+    margin-top:52px;
+    padding-top:28px;
+    border-top:1px solid rgba(75,58,66,0.1);
+    max-width:480px;
+  }
+  .hero-stats div b{
+    display:block;
+    font-family:'Baloo 2', sans-serif;
+    font-size:1.7rem;
+    color:var(--pink-ink);
+  }
+  .hero-stats div span{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+
+  .hero-art{
+    position:relative;
+    height:560px;
+  }
+  .blob-bg{
+    position:absolute;
+    inset:0;
+    z-index:0;
+  }
+  .float-badge{
+    position:absolute;
+    background:#fff;
+    border-radius:20px;
+    padding:14px 18px;
+    display:flex; align-items:center; gap:10px;
+    box-shadow:0 14px 30px rgba(75,58,66,0.14);
+    font-weight:700;
+    font-size:0.88rem;
+    z-index:3;
+  }
+  .float-badge.b1{ top:36px; left:-6px; animation:floatY 5s ease-in-out infinite;}
+  .float-badge.b2{ bottom:70px; right:-14px; animation:floatY 6s ease-in-out infinite 0.6s;}
+  .float-badge .swatch{width:26px;height:26px;border-radius:50%;}
+  @keyframes floatY{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+  }
+
+  .hero-wave{
+    display:block;
+    width:100%;
+    line-height:0;
+  }
+
+  /* ---------- Marquee strip ---------- */
+  .marquee{
+    background:var(--yellow);
+    padding:14px 0;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .marquee-inner{
+    display:inline-flex;
+    gap:48px;
+    animation:scroll 26s linear infinite;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    color:var(--ink);
+  }
+  .marquee-inner span{display:flex; align-items:center; gap:10px;}
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:110px 0;}
+  .section-head{
+    max-width:560px;
+    margin-bottom:64px;
+  }
+  .section-head h2{
+    font-size:2.5rem;
+    margin-top:14px;
+  }
+  .kicker{
+    display:inline-block;
+    font-weight:800;
+    color:var(--green-ink);
+    font-size:0.9rem;
+    letter-spacing:0.02em;
+  }
+  .section-head p{
+    margin-top:16px;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+    max-width:480px;
+  }
+
+  /* ---------- Values ---------- */
+  .values{background:var(--cream);}
+  .value-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  .value-card{
+    background:var(--pink-bg);
+    border-radius:var(--radius-lg) var(--radius-md) var(--radius-lg) var(--radius-md);
+    padding:38px 32px;
+    position:relative;
+    transition:transform .25s ease;
+  }
+  .value-card:nth-child(2){background:var(--green-bg);}
+  .value-card:nth-child(3){background:#FFF9E4;}
+  .value-card:hover{transform:translateY(-6px);}
+  .value-icon{
+    width:56px;height:56px;
+    border-radius:18px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:26px;
+    margin-bottom:22px;
+    background:#fff;
+    box-shadow:0 8px 18px rgba(75,58,66,0.08);
+  }
+  .value-card h3{font-size:1.3rem; margin-bottom:10px;}
+  .value-card p{color:var(--ink-soft); font-size:0.98rem;}
+
+  /* ---------- Catalog ---------- */
+  .catalog{
+    background:var(--green-bg);
+    position:relative;
+  }
+  .catalog .section-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    max-width:100%;
+  }
+  .filter-pills{display:flex; gap:10px;}
+  .pill{
+    padding:10px 20px;
+    border-radius:999px;
+    background:#fff;
+    font-weight:700;
+    font-size:0.88rem;
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .pill.active, .pill:hover{
+    background:var(--green-deep);
+    color:#fff;
+  }
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  .product-card{
+    background:#fff;
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    box-shadow:0 10px 26px rgba(75,58,66,0.07);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .product-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 34px rgba(75,58,66,0.14);
+  }
+  .product-media{
+    aspect-ratio:1/0.95;
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--pink-mid);
+  }
+  .product-card:nth-child(2) .product-media{background:var(--green-mid);}
+  .product-card:nth-child(3) .product-media{background:#FFEFC2;}
+  .product-card:nth-child(4) .product-media{background:var(--pink-mid);}
+  .product-tag{
+    position:absolute; top:14px; left:14px;
+    background:#fff;
+    padding:5px 12px;
+    border-radius:999px;
+    font-size:0.72rem;
+    font-weight:800;
+    color:var(--pink-ink);
+  }
+  .product-info{padding:20px 22px 24px;}
+  .product-info .row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top:6px;
+  }
+  .product-info h3{font-size:1.08rem; font-family:'Nunito',sans-serif; font-weight:800;}
+  .product-info .price{font-weight:800; color:var(--pink-ink); font-family:'Baloo 2',sans-serif; font-size:1.15rem;}
+  .product-info .sub{color:var(--ink-soft); font-size:0.85rem;}
+
+  /* ---------- Story ---------- */
+  .story{background:var(--cream);}
+  .story-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:70px;
+    align-items:center;
+  }
+  .story-art{
+    position:relative;
+    height:440px;
+  }
+  .story-text .kicker{margin-bottom:14px; display:block;}
+  .story-text h2{font-size:2.3rem; margin-bottom:22px;}
+  .story-text p{color:var(--ink-soft); font-size:1.04rem; margin-bottom:18px; max-width:480px;}
+  .story-signature{
+    margin-top:30px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .story-signature .av{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--pink-deep);
+  }
+  .story-signature b{display:block; font-family:'Baloo 2',sans-serif;}
+  .story-signature span{color:var(--ink-soft); font-size:0.85rem;}
+
+  /* ---------- Testimonial band ---------- */
+  .quote-band{
+    background:var(--pink-ink);
+    color:#fff;
+    padding:90px 0;
+    text-align:center;
+  }
+  .quote-band .stars{
+    font-size:1.3rem;
+    color:var(--yellow);
+    margin-bottom:22px;
+    letter-spacing:6px;
+  }
+  .quote-band blockquote{
+    font-family:'Baloo 2', sans-serif;
+    font-size:1.9rem;
+    max-width:760px;
+    margin:0 auto;
+    line-height:1.4;
+  }
+  .quote-band .who{
+    margin-top:28px;
+    font-weight:700;
+    opacity:0.85;
+  }
+
+  /* ---------- Newsletter / CTA ---------- */
+  .cta{
+    background:var(--yellow);
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+    background:var(--cream);
+    border-radius:var(--radius-lg);
+    padding:60px 64px;
+    position:relative;
+    z-index:2;
+  }
+  .cta-inner h2{font-size:2rem; max-width:440px;}
+  .cta-inner p{color:var(--ink-soft); margin-top:12px; max-width:420px;}
+  .cta-form{
+    display:flex; gap:12px;
+    flex-shrink:0;
+  }
+  .cta-form input{
+    padding:16px 22px;
+    border-radius:999px;
+    border:2px solid var(--pink-mid);
+    font-family:'Nunito',sans-serif;
+    font-size:0.95rem;
+    width:260px;
+    background:#fff;
+  }
+  .cta-form input:focus{outline:none; border-color:var(--pink-ink);}
+  .cta-form button{
+    background:var(--pink-ink);
+    color:#fff;
+    border:none;
+    padding:16px 28px;
+    border-radius:999px;
+    font-weight:700;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:transform .2s ease;
+  }
+  .cta-form button:hover{transform:translateY(-2px);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);
+    color:#F4E8EC;
+    padding:70px 0 30px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:50px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  .footer-logo{
+    font-family:'Baloo 2',sans-serif;
+    font-weight:800;
+    font-size:1.6rem;
+    color:#fff;
+    margin-bottom:14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .footer-logo .dot{width:10px;height:10px;border-radius:50%;background:var(--yellow);}
+  footer p.desc{color:#C9B6BE; max-width:280px; font-size:0.95rem;}
+  footer h4{
+    font-family:'Baloo 2',sans-serif;
+    color:#fff;
+    margin-bottom:18px;
+    font-size:1rem;
+  }
+  footer ul{list-style:none;}
+  footer li{margin-bottom:12px;}
+  footer a{color:#C9B6BE; font-size:0.93rem; transition:color .2s ease;}
+  footer a:hover{color:var(--yellow);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:26px;
+    font-size:0.85rem;
+    color:#9C8790;
+  }
+  .footer-social{display:flex; gap:14px;}
+  .footer-social a{
+    width:38px;height:38px;border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff;
+    transition:background .2s ease;
+  }
+  .footer-social a:hover{background:var(--pink-ink);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#" class="logo"><span class="dot"></span>Kawaii</a>
+    <nav class="nav-links">
+      <a href="#values">Философия</a>
+      <a href="#catalog">Каталог</a>
+      <a href="#story">О бренде</a>
+      <a href="#reviews">Отзывы</a>
+    </nav>
+    <a href="#cta" class="nav-cta">В каталог</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow-tag"><span class="icon">🌸</span>Ручная работа, нежные материалы</span>
+      <h1>Мягкие игрушки,<br>которые хочется <em>обнять</em></h1>
+      <p class="lead">Kawaii — это плюшевые друзья пастельных оттенков: розовый, мятный и лёгкий жёлтый акцент. Шьём вручную из гипоаллергенных тканей — мягко, безопасно, с характером.</p>
+      <div class="hero-actions">
+        <button class="btn-primary">Смотреть коллекцию</button>
+        <a href="#story" class="btn-ghost"><span class="play">▶</span> Как мы шьём</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>15k+</b><span>довольных хозяев</span></div>
+        <div><b>120+</b><span>уникальных моделей</span></div>
+        <div><b>4.9★</b><span>средняя оценка</span></div>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <svg class="blob-bg" viewBox="0 0 560 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M120 60C210 10 360 20 430 110C500 200 520 320 460 410C400 500 260 540 160 490C60 440 20 320 30 220C40 130 60 100 120 60Z" fill="#FFD6E2"/>
+        <path d="M160 100C230 70 340 90 380 160C420 230 410 320 360 380C310 440 210 460 150 420C90 380 60 300 70 230C80 160 110 120 160 100Z" fill="#CDEBD3" opacity="0.85" transform="translate(30,20) scale(0.85)"/>
+      </svg>
+
+      <svg viewBox="0 0 420 420" style="position:relative;z-index:2;width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+        <!-- plush bear illustration -->
+        <ellipse cx="210" cy="330" rx="150" ry="34" fill="#4B3A42" opacity="0.06"/>
+        <circle cx="120" cy="120" r="42" fill="#FFB9CE"/>
+        <circle cx="300" cy="120" r="42" fill="#FFB9CE"/>
+        <circle cx="120" cy="120" r="22" fill="#FFF3F6"/>
+        <circle cx="300" cy="120" r="22" fill="#FFF3F6"/>
+        <rect x="95" y="140" width="230" height="200" rx="100" fill="#FFC9DA"/>
+        <circle cx="210" cy="180" r="96" fill="#FFD9E5"/>
+        <ellipse cx="210" cy="215" rx="46" ry="36" fill="#FFF3F6"/>
+        <circle cx="182" cy="168" r="9" fill="#4B3A42"/>
+        <circle cx="238" cy="168" r="9" fill="#4B3A42"/>
+        <ellipse cx="210" cy="196" rx="9" ry="7" fill="#4B3A42"/>
+        <path d="M195 214 Q210 224 225 214" stroke="#4B3A42" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="160" cy="200" r="10" fill="#FF9DBB" opacity="0.6"/>
+        <circle cx="260" cy="200" r="10" fill="#FF9DBB" opacity="0.6"/>
+        <ellipse cx="150" cy="270" rx="34" ry="46" fill="#FFC9DA"/>
+        <ellipse cx="270" cy="270" rx="34" ry="46" fill="#FFC9DA"/>
+        <path d="M170 145 L195 120 L210 145 L225 118 L250 145" stroke="#FFDD5A" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <div class="float-badge b1"><span class="swatch" style="background:var(--pink-deep)"></span>Розовая пастель</div>
+      <div class="float-badge b2"><span class="swatch" style="background:var(--green-deep)"></span>Мятный оттенок</div>
+    </div>
+  </div>
+
+  <svg class="hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 40C240 90 480 90 720 55C960 20 1200 0 1440 30V90H0V40Z" fill="#FFFDFB"/>
+  </svg>
+</section>
+
+<div class="marquee">
+  <div class="marquee-inner">
+    <span>🌸 Гипоаллергенный наполнитель</span>
+    <span>🐣 Ручная работа</span>
+    <span>🎀 Пастельные оттенки</span>
+    <span>🌿 Безопасные материалы</span>
+    <span>🌸 Гипоаллергенный наполнитель</span>
+    <span>🐣 Ручная работа</span>
+    <span>🎀 Пастельные оттенки</span>
+    <span>🌿 Безопасные материалы</span>
+  </div>
+</div>
+
+<section class="values" id="values">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Почему выбирают Kawaii</span>
+      <h2>Мягкость — это не просто ощущение</h2>
+      <p>Каждая игрушка проходит три проверки: на нежность ткани, безопасность швов и, конечно, на милоту.</p>
+    </div>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon">🧸</div>
+        <h3>Гипоаллергенные ткани</h3>
+        <p>Используем плюш и минки без резких красителей — подходит даже для самых маленьких.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🪡</div>
+        <h3>Ручная сборка</h3>
+        <p>Каждый шов проверяется вручную — игрушка выдержит и объятия, и активные игры.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🎨</div>
+        <h3>Авторская палитра</h3>
+        <p>Нежно-розовый, мятно-зелёный и акцентный жёлтый — узнаваемый почерк Kawaii в каждой модели.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="catalog" id="catalog">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Каталог</span>
+        <h2>Бестселлеры этого сезона</h2>
+      </div>
+      <div class="filter-pills">
+        <span class="pill active">Все</span>
+        <span class="pill">Розовые</span>
+        <span class="pill">Мятные</span>
+        <span class="pill">Новинки</span>
+      </div>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-media">
+          <span class="product-tag">Хит</span>
+          <svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="50" r="32" fill="#fff"/><circle cx="60" cy="80" r="26" fill="#fff"/><circle cx="34" cy="30" r="12" fill="#fff"/><circle cx="86" cy="30" r="12" fill="#fff"/></svg>
+        </div>
+        <div class="product-info">
+          <h3>Мишка Зефир</h3>
+          <p class="sub">Розовая пастель, 28 см</p>
+          <div class="row"><span class="price">3 490 ₸</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-media">
+          <span class="product-tag">Новинка</span>
+          <svg width="120" height="120" viewBox="0 0 120 120"><ellipse cx="60" cy="65" rx="34" ry="30" fill="#fff"/><ellipse cx="34" cy="30" rx="10" ry="22" fill="#fff"/><ellipse cx="86" cy="30" rx="10" ry="22" fill="#fff"/></svg>
+        </div>
+        <div class="product-info">
+          <h3>Зайка Матча</h3>
+          <p class="sub">Мятно-зелёный, 32 см</p>
+          <div class="row"><span class="price">3 890 ₸</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-media">
+          <span class="product-tag">Лимит</span>
+          <svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="34" fill="#fff"/><circle cx="60" cy="60" r="34" fill="#fff"/><polygon points="60,20 68,38 52,38" fill="#fff"/></svg>
+        </div>
+        <div class="product-info">
+          <h3>Лисёнок Пудинг</h3>
+          <p class="sub">Жёлтый акцент, 26 см</p>
+          <div class="row"><span class="price">3 690 ₸</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-media">
+          <svg width="120" height="120" viewBox="0 0 120 120"><ellipse cx="60" cy="60" rx="38" ry="32" fill="#fff"/><circle cx="40" cy="38" r="9" fill="#fff"/><circle cx="80" cy="38" r="9" fill="#fff"/></svg>
+        </div>
+        <div class="product-info">
+          <h3>Котик Маршмеллоу</h3>
+          <p class="sub">Розово-белый, 24 см</p>
+          <div class="row"><span class="price">3 290 ₸</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <div class="story-art">
+      <svg viewBox="0 0 380 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <path d="M60 40C130 0 260 10 320 80C380 150 370 280 300 360C230 440 100 440 50 370C0 300 -10 190 10 130C25 85 30 60 60 40Z" fill="#F1FAF2"/>
+        <path d="M90 80C140 50 230 60 270 110C310 160 300 250 250 300C200 350 110 350 70 300C30 250 20 170 40 130C50 105 65 95 90 80Z" fill="#CDEBD3" opacity="0.7"/>
+        <circle cx="190" cy="210" r="80" fill="#FFD6E2"/>
+        <circle cx="190" cy="210" r="50" fill="#FFF3F6"/>
+        <circle cx="170" cy="200" r="7" fill="#4B3A42"/>
+        <circle cx="210" cy="200" r="7" fill="#4B3A42"/>
+        <path d="M178 222 Q190 230 202 222" stroke="#4B3A42" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="140" cy="150" r="24" fill="#FFD6E2"/>
+        <circle cx="240" cy="150" r="24" fill="#FFD6E2"/>
+      </svg>
+    </div>
+    <div class="story-text">
+      <span class="kicker">О бренде</span>
+      <h2>Kawaii начинался с одной подушки-игрушки для племянницы</h2>
+      <p>Три года назад мы просто хотели сшить что-то по-настоящему мягкое и безопасное. Сегодня Kawaii — это команда из семи мастериц, которые вручную создают плюшевых персонажей в фирменной пастельной палитре: нежно-розовый и белый, мятно-зелёный и белый, с акцентом тёплого жёлтого.</p>
+      <p>Мы не гонимся за трендами — мы шьём друзей, которые остаются рядом надолго.</p>
+      <div class="story-signature">
+        <div class="av"></div>
+        <div>
+          <b>Айгерим Нурлан</b>
+          <span>Основательница Kawaii</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quote-band" id="reviews">
+  <div class="wrap">
+    <div class="stars">★★★★★</div>
+    <blockquote>«Заказала мишку в подарок — и оставила себе. Настолько мягкий и приятный на ощупь, что расставаться не хочется»</blockquote>
+    <div class="who">— Дана, постоянная покупательница</div>
+  </div>
+</div>
+
+<section class="cta" id="cta">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div>
+        <h2>Первой узнавайте о новых плюшевых друзьях</h2>
+        <p>Подпишитесь — и получите скидку 10% на первый заказ из коллекции Kawaii.</p>
+      </div>
+      <form class="cta-form" onsubmit="return false;">
+        <input type="email" placeholder="Ваш email" aria-label="Email" required>
+        <button type="submit">Подписаться</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><span class="dot"></span>Kawaii</div>
+        <p class="desc">Мягкие игрушки ручной работы в нежной пастельной палитре. Сделано с любовью, для объятий каждый день.</p>
+      </div>
+      <div>
+        <h4>Магазин</h4>
+        <ul>
+          <li><a href="#">Новинки</a></li>
+          <li><a href="#">Бестселлеры</a></li>
+          <li><a href="#">Подарочные наборы</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Бренд</h4>
+        <ul>
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Материалы</a></li>
+          <li><a href="#">Отзывы</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="#">hello@kawaii.shop</a></li>
+          <li><a href="#">+7 700 000 00 00</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Kawaii. Все права защищены.</span>
+      <div class="footer-social">
+        <a href="#">in</a>
+        <a href="#">tt</a>
+        <a href="#">pt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
